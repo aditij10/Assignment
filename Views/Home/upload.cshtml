@@ -1,24 +1,36 @@
 ﻿@model System.Data.DataTable
 @using System.Data;
+@using System.Web;
+@using System.Web.Helpers;
 
-<h2>Upload File</h2>
+
+<h2>Please upload a File</h2>
+<br />
 
 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
     <div class="form-group">
-        <input type="file" id="dataFile" name="upload"  />
+        <input type="file" id="dataFile" name="uploadedFile" />
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Upload" class="btn btn-default" backColor="red" />
     </div>
 
-    <div class="form-group">
-        <input type="submit" value="Upload" class="btn btn-default" />
-    </div>
+   
 
     if (Model != null)
     {
-        <table>
+        <div class="form-group">
+            @Html.ActionLink("Generate Pie Chart ", "Charts", "Home",  new{dataPointFound =@ViewData["dpFound"], dataPointFell =@ViewData["dpFell"]})
+        </div>
+        <br />
+
+        <table class=" table table-bordered table-responsive table-hover">
             <thead>
                 <tr>
                     @foreach (DataColumn col in Model.Columns)
