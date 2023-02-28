@@ -4,8 +4,9 @@
 @using System.Web.Helpers;
 
 
-<h2>Please upload a File</h2>
-<br />
+<h2>
+    Meteorite Landings Data </h2>
+
 
 @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -13,12 +14,13 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
+    <p>Please upload the data in csv format.</p>
     <div class="form-group">
         <input type="file" id="dataFile" name="uploadedFile" />
     </div>
     <br />
     <div class="form-group">
-        <input type="submit" value="Upload" class="btn btn-default" backColor="red" />
+        <input type="submit" value="Upload" style="background: darkcyan;color:white;"   />
     </div>
 
    
